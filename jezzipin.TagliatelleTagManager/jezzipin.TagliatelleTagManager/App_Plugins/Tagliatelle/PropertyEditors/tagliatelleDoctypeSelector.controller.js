@@ -4,7 +4,7 @@
         $scope.documentTypes = [];
         
         $scope.retreiveDocumentTypes = function () {
-            $http.get("/umbraco/backoffice/api/tagliatelle/DocumentTypesApi/GetDocumentTypes")
+            $http.get("/umbraco/backoffice/tagliatelle/DocumentTypesApi/GetDocumentTypes")
             .success(function (data) {
                 $scope.documentTypes = data;
             });

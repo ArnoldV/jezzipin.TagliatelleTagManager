@@ -14,7 +14,7 @@
 
         // Retrieve all tags that currently exist within the current website scope
     	$scope.initialiseTags = function () {
-    	    $http.get("/umbraco/backoffice/api/tagliatelle/TagEditorApi/GetTags/?currentNodeId=" + currentNodeId + "&containerId=" + $scope.model.config.parentContainer + "&documentTypeAlias=" + $scope.model.config.documentTypeAlias)
+    	    $http.get("/umbraco/backoffice/tagliatelle/TagEditorApi/GetTags/?currentNodeId=" + currentNodeId + "&containerId=" + $scope.model.config.parentContainer + "&documentTypeAlias=" + $scope.model.config.documentTypeAlias)
                 .success(function (data, status, headers, config) {
                     $scope.tags = data;
                 });
@@ -22,7 +22,7 @@
 
     	// Do a web api call to get tag names from currentTagIds
     	$scope.initTagNamesFromIds = function () {
-    	    $http.get("/umbraco/backoffice/api/tagliatelle/TagEditorApi/GetTagNames/?nodeIds=" + $scope.model.value + "&documentTypeAlias=" + $scope.model.config.documentTypeAlias)
+    	    $http.get("/umbraco/backoffice/tagliatelle/TagEditorApi/GetTagNames/?nodeIds=" + $scope.model.value + "&documentTypeAlias=" + $scope.model.config.documentTypeAlias)
 				.success(function (data, status, headers, config) {
 					$scope.currentTags = data;
 				});
@@ -77,7 +77,7 @@
 
     	$scope.$on("formSubmitting", function (ev, args) {
     	    $.ajax({
-    	        url: "/umbraco/backoffice/api/tagliatelle/TagEditorApi/GetAndEnsureNodeIdsForTags/?currentNodeId=" + currentNodeId + "&tags=" + $scope.currentTags + "&containerId=" + $scope.model.config.parentContainer + "&documentTypeAlias=" + $scope.model.config.documentTypeAlias,
+    	        url: "/umbraco/backoffice/tagliatelle/TagEditorApi/GetAndEnsureNodeIdsForTags/?currentNodeId=" + currentNodeId + "&tags=" + $scope.currentTags + "&containerId=" + $scope.model.config.parentContainer + "&documentTypeAlias=" + $scope.model.config.documentTypeAlias,
     	        async: false
     	    }).done(function (data) {
     	        $scope.model.value = data.join();
