@@ -40,7 +40,7 @@
 
 		// Toggle the display of existing website tags
     	$scope.showTags = function (e) {
-    		$('#tagliatelleTags').toggleClass('hide');
+    		 $(e.currentTarget.nextElementSibling).toggleClass('hide');
     	};
 
 		// Add a tag when the user presses enter
