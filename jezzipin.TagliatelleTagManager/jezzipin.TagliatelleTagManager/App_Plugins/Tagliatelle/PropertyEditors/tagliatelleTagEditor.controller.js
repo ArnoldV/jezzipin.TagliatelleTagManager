@@ -5,6 +5,7 @@
     {
         assetsService.loadCss("/App_Plugins/Tagliatelle/PropertyEditors/css/tagliatelle.css");
 
+        $scope.hideTags = true;
     	$scope.tags = [];
     	$scope.currentTags = [];
     	$scope.currentTagIds = [];
@@ -40,7 +41,7 @@
 
 		// Toggle the display of existing website tags
     	$scope.showTags = function (e) {
-    		 $(e.currentTarget.nextElementSibling).toggleClass('hide');
+    	    $scope.hideTags = ($scope.hideTags == true ? false : true);
     	};
 
 		// Add a tag when the user presses enter

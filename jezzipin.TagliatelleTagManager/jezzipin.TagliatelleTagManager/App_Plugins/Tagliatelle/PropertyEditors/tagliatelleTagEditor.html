@@ -14,7 +14,7 @@
 
     <div class="row">
         <a id="tagliatelleToggle" ng-click="showTags($event)" style="cursor: pointer;">Show/hide tags</a>
-        <ul id="tagliatelleTags" class="hide">
+        <ul id="tagliatelleTags" ng-hide="hideTags">
             <li ng-repeat="tag in tags" class="label label-primary tag">
                 <a class="tagliatelleTag" data-tag="{{tag}}" ng-click="addFromTagList($event)">{{tag}} <i class="icon icon-add"></i></a>
             </li>
