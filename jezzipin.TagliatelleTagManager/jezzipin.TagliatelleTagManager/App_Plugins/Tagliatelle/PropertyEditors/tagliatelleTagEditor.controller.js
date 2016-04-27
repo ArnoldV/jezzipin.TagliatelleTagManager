@@ -84,6 +84,7 @@
     	        $scope.model.value = data.join();
     	        $scope.model.onValueChanged($scope.model.value);
     	        $scope.initialiseTags();
+
     	    });
     	});
 
