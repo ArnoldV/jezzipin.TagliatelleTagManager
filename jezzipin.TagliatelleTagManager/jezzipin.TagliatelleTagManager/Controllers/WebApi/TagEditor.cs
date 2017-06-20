@@ -18,11 +18,30 @@ namespace jezzipin.Tagliatelle
 
         public IEnumerable<string> GetTags(int currentNodeId, int containerId, string documentTypeAlias)
         {
-            /* Get the tags container */
-            IContent tagContainer = cs.GetById(containerId);
+            var tagContainer = cs.GetById(containerId);
+            
+            var tags = Enumerable.Empty<string>();
 
+            if (tagContainer == null)
+            {
+                var tagContainerByHelper = _helper.TypedContentAtRoot().DescendantsOrSelf("tagFolder");
+
+                if (tagContainerByHelper != null)
+                {
+                    var firstTagContainer = tagContainerByHelper.FirstOrDefault();
+
+                    if (firstTagContainer != null)
+                    {
+                        tagContainer = cs.GetById(firstTagContainer.Id);
+                    }
+                }
+            }
+
+            if(tagContainer != null) { 
             /* Compile a list of all tag pages that exist as children of the tags container */
-            IEnumerable<string> tags = tagContainer.Children().Where(x => x.ContentType.Alias == documentTypeAlias).Select(x => x.Name);
+                tags = tagContainer.Children().Where(x => x.ContentType.Alias == documentTypeAlias).Select(x => x.Name);
+            }
+            
             return tags;
         }
 
